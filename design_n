@@ -1,0 +1,56 @@
+module TLC(
+  input clk,rst,
+  output reg [2:0] A,
+  output reg [2:0] B
+);
+  reg [1:0] state,next;
+  
+  parameter s0=2'b00,
+  			s1=2'b01,
+  			s2=2'b10,
+  			s3=2'b11;
+  
+  always@(posedge clk or posedge rst)begin
+    if(rst)
+      state<=s0;
+    else
+      state<=next;
+  end
+  
+  always@(*)begin
+    next=state;
+    
+    case(state)
+      s0:next=s1;
+      s1:next=s2;
+      s2:next=s3;
+      s3:next=s0;
+      default:next=s0;
+    endcase
+  end
+  
+  always@(*)begin   //  in moore fsm output must be defined for every state....
+    case(state)
+      s0:begin
+        A=3'b001;
+        B=3'b100;
+      end
+      s1:begin
+        A=3'b010;
+        B=3'b100;
+      end
+      s2:begin
+        A=3'b100;
+        B=3'b001;
+      end
+      s3:begin
+        A=3'b100;
+        B=3'b010;
+      end
+    endcase
+  end
+    endmodule
+        
+        
+      
+      
