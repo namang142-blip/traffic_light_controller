@@ -68,4 +68,4 @@ The testbench:
 
 ## Author
 
-Naman
+Naman Gupta.
