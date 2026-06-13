@@ -1,70 +1,71 @@
-# 🚦 Traffic Light Controller (Verilog)
+# Traffic Light Controller FSM (Verilog)
 
-## 📌 Overview
+## Overview
 
-Traffic Light Controller implemented using a **Moore FSM** in Verilog.
-Controls two roads (A & B) with proper sequencing and timing.
+This project implements a Moore Finite State Machine (FSM)-based Traffic Light Controller using Verilog HDL.
 
----
+The controller manages traffic flow between:
 
-## 🧠 FSM Design
+* Highway Road
+* Side Road
 
-### States
-
-| State | Road A | Road B |
-| ----- | ------ | ------ |
-| S0    | Green  | Red    |
-| S1    | Yellow | Red    |
-| S2    | Red    | Green  |
-| S3    | Red    | Yellow |
-
-### Transition
-
-S0 → S1 → S2 → S3 → S0
+using timer-based state transitions.
 
 ---
 
-## ⏱ Timing
+## FSM States
 
-* Green: 5 cycles
-* Yellow: 2 cycles
+The controller cycles through the following states:
 
-Implemented using a counter.
-
----
-
-## 🔧 Features
-
-* Moore FSM
-* Safe switching (no overlap)
-* Counter-based timing
-* Synthesizable RTL
+| State | Description              |
+| ----- | ------------------------ |
+| HG_SR | Highway Green, Side Red  |
+| HY_SR | Highway Yellow, Side Red |
+| HR_SG | Highway Red, Side Green  |
+| HR_SY | Highway Red, Side Yellow |
 
 ---
 
-## 🧪 Simulation
+## Features
 
-Testbench verifies:
-
-* State transitions
-* Output correctness
-
----
-
-## 📊 Encoding
-
-```text
-{Red, Yellow, Green}
-001 → Green
-010 → Yellow
-100 → Red
-```
+* Moore FSM design
+* Timer/counter-based transitions
+* Asynchronous reset
+* Separate sequential and combinational logic
+* Simple Verilog testbench
+* Clock-driven synchronous design
 
 ---
 
-## 📁 Files
+## Files
 
-* `TLC_timer.v` – Design
-* `testbench.v` – Simulation
+* `TLC.v` → RTL design of Traffic Light Controller
+* `TLC_tb.v` → Testbench for simulation
 
 ---
+
+## Concepts Used
+
+* Finite State Machines (FSM)
+* State Encoding
+* Sequential Logic
+* Combinational Logic
+* Counter Logic
+* Moore FSM Architecture
+* Verilog HDL
+
+---
+
+## Simulation
+
+The testbench:
+
+* Generates clock and reset
+* Simulates FSM transitions
+* Displays traffic light outputs over time
+
+---
+
+## Author
+
+Naman
